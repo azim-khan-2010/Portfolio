@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azim Khan | Portfolio</title>
+    
+    <!-- SEO and Open Graph Meta Tags -->
+    <meta name="description" content="Portfolio of Azim Khan - Full-Stack Developer specialized in building modern, accessible, and high-performance web experiences.">
+    <meta name="keywords" content="Azim Khan, Web Developer, Portfolio, Full-Stack Developer, Accessibility, React, Python">
+    <meta property="og:title" content="Azim Khan | Portfolio">
+    <meta property="og:description" content="Simulated 5-page highly-accessible high-performance web engineering portfolio.">
+    
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            indigo: '#4F46E5',
+                            purple: '#8B5CF6',
+                            pink: '#EC4899',
+                            darkbg: '#0F172A',
+                            darkcard: '#1E293B',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modern Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        .light ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4f46e5;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b5cf6;
+        }
+
+        /* Keyboard Focus Outline */
+        *:focus-visible {
+            outline: 3px solid #8b5cf6 !important;
+            outline-offset: 4px;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .light .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(15, 23, 42, 0.08);
+        }
+
+        /* Active Navigation Link Highlights */
+        .nav-active {
+            color: #ffffff !important;
+            background-color: #4f46e5 !important;
+            border-radius: 0.5rem;
+        }
+        .light .nav-active {
+            color: #ffffff !important;
+            background-color: #4f46e5 !important;
+        }
+
+        /* Custom contrast overrides */
+        .high-contrast {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+        .high-contrast .glass-card {
+            background: #000000 !important;
+            border: 2px solid #ffffff !important;
+            color: #ffffff !important;
+        }
+        .high-contrast a, .high-contrast button {
+            color: #ffff00 !important;
+            text-decoration: underline !important;
+        }
+
+        /* Animation Keyframes for Page Transitions */
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-page {
+            animation: pageFadeIn 0.35s ease-out forwards;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-slate-100 font-sans transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100 light:bg-slate-50 light:text-slate-800" id="body-root">
+
+    <!-- Skip to Main Content Link for screen readers -->
+    <a href="#main-content-anchor" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-brand-indigo text-white px-4 py-2 rounded-md z-50 shadow-lg font-semibold">
+        Skip to main content
+    </a>
+
+    <!-- Accessibility Adjustment Toolbar -->
+    <div class="fixed bottom-6 left-6 z-50 flex flex-col gap-2" role="region" aria-label="Accessibility Toolbar">
+        <button id="accessibility-toggle-btn" aria-expanded="false" aria-controls="accessibility-panel" class="bg-brand-indigo hover:bg-brand-purple text-white p-3 rounded-full shadow-xl transition-all flex items-center justify-center focus:ring-4 focus:ring-brand-purple" title="Accessibility Options" aria-label="Accessibility Options Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+        </button>
+
+        <div id="accessibility-panel" class="hidden flex flex-col gap-2 bg-slate-800 dark:bg-slate-900 border border-slate-700 p-4 rounded-xl shadow-2xl w-48 text-xs font-semibold text-slate-200">
+            <p class="border-b border-slate-700 pb-2 mb-1 text-slate-400 uppercase tracking-wider">A11y Assistant</p>
+            <button onclick="adjustFontSize('increase')" class="flex justify-between items-center bg-slate-700 hover:bg-slate-600 px-3 py-2 rounded focus:ring-2 focus:ring-brand-purple" aria-label="Increase text size">
+                <span>Text Size +</span>
+                <span class="bg-slate-600 px-1.5 py-0.5 rounded text-[10px]">A+</span>
+            </button>
+            <button onclick="adjustFontSize('decrease')" class="flex justify-between items-center bg-slate-700 hover:bg-slate-600 px-3 py-2 rounded focus:ring-2 focus:ring-brand-purple" aria-label="Decrease text size">
+                <span>Text Size -</span>
+                <span class="bg-slate-600 px-1.5 py-0.5 rounded text-[10px]">A-</span>
+            </button>
+            <button onclick="toggleHighContrast()" class="flex justify-between items-center bg-slate-700 hover:bg-slate-600 px-3 py-2 rounded focus:ring-2 focus:ring-brand-purple" aria-label="Toggle High Contrast Mode">
+                <span>Contrast</span>
+                <span class="bg-yellow-500 text-black px-1.5 py-0.5 rounded text-[10px]">HC</span>
+            </button>
+            <button onclick="showKeyboardShortcuts()" class="flex justify-between items-center bg-slate-700 hover:bg-slate-600 px-3 py-2 rounded focus:ring-2 focus:ring-brand-purple" aria-label="Show keyboard navigation guide">
+                <span>Shortcuts</span>
+                <span class="bg-slate-600 px-1.5 py-0.5 rounded text-[10px]">K</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header role="banner" class="sticky top-0 w-full z-40 bg-slate-900/85 dark:bg-slate-950/85 backdrop-blur-md border-b border-slate-800 transition-colors duration-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center">
+                <!-- Branding logo acting as Home SPA redirect -->
+                <a href="#home" onclick="navigateTo('home'); return false;" class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-brand-indigo via-brand-purple to-brand-pink bg-clip-text text-transparent flex items-center gap-2 focus:ring-2 focus:ring-brand-purple rounded px-2" aria-label="Azim Khan Portfolio Home">
+                    <span>&lt;AZIM /&gt;</span>
+                </a>
+            </div>
+
+            <!-- SPA Nav Links representing the 5 Pages -->
+            <nav role="navigation" aria-label="Primary Navigation" class="hidden md:flex items-center space-x-2">
+                <a href="#home" id="nav-home" onclick="navigateTo('home'); return false;" class="text-sm font-medium text-slate-300 hover:text-white transition focus:ring-2 focus:ring-brand-purple rounded px-3 py-1.5">Home</a>
+                <a href="#about" id="nav-about" onclick="navigateTo('about'); return false;" class="text-sm font-medium text-slate-300 hover:text-white transition focus:ring-2 focus:ring-brand-purple rounded px-3 py-1.5">About</a>
+                <a href="#skills" id="nav-skills" onclick="navigateTo('skills'); return false;" class="text-sm font-medium text-slate-300 hover:text-white transition focus:ring-2 focus:ring-brand-purple rounded px-3 py-1.5">Skills</a>
+                <a href="#projects" id="nav-projects" onclick="navigateTo('projects'); return false;" class="text-sm font-medium text-slate-300 hover:text-white transition focus:ring-2 focus:ring-brand-purple rounded px-3 py-1.5">Projects</a>
+                <a href="#contact" id="nav-contact" onclick="navigateTo('contact'); return false;" class="text-sm font-medium text-slate-300 hover:text-white transition focus:ring-2 focus:ring-brand-purple rounded px-3 py-1.5">Contact</a>
+            </nav>
+
+            <!-- Mode Controls & Mobile Toggle -->
+            <div class="flex items-center space-x-3">
+               
+                   
+                    </svg>
+                </button>
+
+                <button id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white focus:ring-2 focus:ring-brand-purple">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path id="menu-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile SPA Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-slate-800 transition-all px-4 pt-2 pb-4 space-y-1">
+            <a href="#home" onclick="navigateTo('home'); return false;" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">Home</a>
+            <a href="#about" onclick="navigateTo('about'); return false;" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">About</a>
+            <a href="#skills" onclick="navigateTo('skills'); return false;" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">Skills</a>
+            <a href="#projects" onclick="navigateTo('projects'); return false;" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">Projects</a>
+            <a href="#contact" onclick="navigateTo('contact'); return false;" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">Contact</a>
+        </div>
+    </header>
+
+    <div id="main-content-anchor" class="sr-only">Main content start</div>
+
+    <!-- MAIN SPA CONTROLLER ELEMENT -->
+    <main id="main-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 min-h-[75vh]" role="main">
+
+        <!-- PAGE 1: HOME VIEW -->
+        <section id="page-home" class="animate-page flex flex-col lg:flex-row items-center justify-between gap-12 py-10" aria-labelledby="home-heading">
+            <div class="flex-1 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-semibold tracking-wide" role="status">
+                    <span class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
+                    Available for Internships & Projects
+                </div>
+                
+                <h1 id="home-heading" class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-none">
+                    Hi, I'm <span class="bg-gradient-to-r from-brand-indigo via-brand-purple to-brand-pink bg-clip-text text-transparent">Azim Khan</span>
+                </h1>
+                
+                <p class="text-xl sm:text-2xl font-bold text-slate-300">
+                    Student 
+                </p>
+                AI enthusiast and aspiring web developer with a passion for creating accessible, high-performance web applications.
+                <p class="text-base sm:text-lg text-slate-400 max-w-xl mx-auto lg:mx-0">
+                   
+                </p>
+                  <div class="flex items-center justify-center lg:justify-start gap-4 py-2" role="region" aria-label="Social Profiles Connection Options">
+                    <!-- X / Twitter -->
+                    <a href="https://x.com/its_azim_khan" target="_blank" rel="noopener noreferrer" 
+                       class="w-12 h-12 rounded-full border border-slate-700 dark:border-slate-800 bg-slate-800/40 dark:bg-slate-900/30 hover:border-brand-indigo hover:text-white flex items-center justify-center text-slate-300 hover:scale-110 transition duration-300 focus:ring-2 focus:ring-brand-purple" 
+                       aria-label="Connect on X (formerly Twitter)">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/in/mohammad-azim-khan-35b080325/" target="_blank" rel="noopener noreferrer" 
+                       class="w-12 h-12 rounded-full border border-slate-700 dark:border-slate-800 bg-slate-800/40 dark:bg-slate-900/30 hover:border-brand-indigo hover:text-white flex items-center justify-center text-slate-300 hover:scale-110 transition duration-300 focus:ring-2 focus:ring-brand-purple" 
+                       aria-label="Connect on LinkedIn">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/its.azim.khan/" target="_blank" rel="noopener noreferrer" 
+                       class="w-12 h-12 rounded-full border border-slate-700 dark:border-slate-800 bg-slate-800/40 dark:bg-slate-900/30 hover:border-brand-indigo hover:text-white flex items-center justify-center text-slate-300 hover:scale-110 transition duration-300 focus:ring-2 focus:ring-brand-purple" 
+                       aria-label="Connect on Instagram">
+                        <svg class="w-5 h-5 stroke-current fill-none" stroke-width="2.5" viewBox="0 0 24 24">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+
+                    <!-- Threads / Custom Mail (@) -->
+             
+
+                    <!-- Facebook -->
+                    <a href="https://www.threads.com/@its.azim.khan" target="_blank" rel="noopener noreferrer" 
+                       class="w-12 h-12 rounded-full border border-slate-700 dark:border-slate-800 bg-slate-800/40 dark:bg-slate-900/30 hover:border-brand-indigo hover:text-white flex items-center justify-center text-slate-300 hover:scale-110 transition duration-300 focus:ring-2 focus:ring-brand-purple" 
+                       aria-label="Connect on Facebook">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10h5v-2h-5c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8v1.43c0 .79-.64 1.43-1.43 1.43-.79 0-1.43-.64-1.43-1.43V12c0-2.76-2.24-5-5-5s-5 2.24-5 5 2.24 5 5 5c1.38 0 2.63-.56 3.54-1.46.65.89 1.7 1.46 2.89 1.46 2.01 0 3.63-1.63 3.63-3.63V12c0-5.52-4.48-10-10-10zm0 13c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                    <a href="#projects" onclick="navigateTo('projects'); return false;" class="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-indigo to-brand-purple text-white font-semibold shadow-lg hover:shadow-brand-indigo/30 transition hover:-translate-y-0.5 focus:ring-4 focus:ring-brand-purple flex items-center gap-2">
+                        <span>Explore Projects</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                    
+                    <a href="#contact" onclick="navigateTo('contact'); return false;" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-semibold transition border border-slate-700 hover:-translate-y-0.5 focus:ring-4 focus:ring-slate-600">
+                        <span>Get In Touch</span>
+                    </a>
+
+
+                        </svg>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Integrated User Specific Custom Asset Image replacing previous custom SVG -->
+            <div class="flex-1 flex justify-center items-center relative" aria-hidden="true">
+                <div class="w-72 h-72 sm:w-85 sm:h-85 rounded-full bg-gradient-to-tr from-brand-indigo via-brand-purple to-brand-pink absolute opacity-15 blur-3xl animate-pulse"></div>
+                <img src="meee.jpg" alt="Developer connection nodes network illustrating structured code paths" class="relative z-10 w-full max-w-sm rounded-2xl shadow-2xl border border-slate-800 transform hover:scale-105 transition-all duration-300" onerror="this.src='https://placehold.co/400x400/1e293b/ffffff?text=%3C/%3E+Developer+Node'"/>
+            </div>
+        </section>
+
+        <!-- PAGE 2: ABOUT VIEW -->
+        <section id="page-about" class="hidden animate-page space-y-8 py-6" aria-labelledby="about-heading">
+            <h2 id="about-heading" class="text-3xl font-extrabold tracking-tight relative inline-block">
+                About Me
+                <span class="block h-1 w-1/2 bg-brand-indigo rounded mt-1"></span>
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 glass-card p-8 rounded-2xl space-y-6">
+                    <p class="text-lg leading-relaxed text-slate-300">
+                        Hello! I am <strong class="text-white font-semibold">Azim Khan</strong>, an enthusiastic and highly dedicated developer focused on producing web applications that stand out in design and accessibility. I strive to combine visual charm with flawless interface responsiveness, following clean development structures to submit professional-grade work.
+                    </p>
+                    <p class="text-lg leading-relaxed text-slate-300">
+                        My development philosophy centers around native semantic integrations. By combining optimized HTML structuring protocols with modern utilities like Tailwind CSS, I ensure all builds perform quickly, scale elegantly, and offer natural keyboard-navigation.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                        <div class="p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                            <h3 class="font-bold text-white mb-1">Career Goal</h3>
+                            <p class="text-sm text-slate-400">To build universal software architectures that solve complex computational challenges while making visual elements natural and accessible.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                            <h3 class="font-bold text-white mb-1">Interactive Focus</h3>
+                            <p class="text-sm text-slate-400">Emphasizing fast response benchmarks, strict client-side validation logic, clean modular styling rules, and thorough error handling boundaries.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-white">Quick Facts</h3>
+                        <ul class="space-y-3" role="list">
+                            <li class="flex items-center gap-3">
+                                <span class="w-2.5 h-2.5 rounded-full bg-brand-indigo"></span>
+                                <span class="text-slate-300"><strong>Role:</strong> Web Developer</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-2.5 h-2.5 rounded-full bg-brand-purple"></span>
+                                <span class="text-slate-300"><strong>Based:</strong> Bhopal, MP, India</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-2.5 h-2.5 rounded-full bg-brand-pink"></span>
+                                <span class="text-slate-300"><strong>Specialty:</strong> HTML5, CSS3, ES6+ JS, Python</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-6 border-t border-slate-700/50 mt-6 text-center">
+                        <p class="text-xs text-slate-400 uppercase tracking-widest mb-2">Qualifications Overview</p>
+                        <div class="p-3 bg-indigo-500/10 rounded-xl border border-indigo-500/20 text-indigo-400 font-semibold text-sm">
+                            Class 10  (2025-2026)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: SKILLS VIEW -->
+        <section id="page-skills" class="hidden animate-page space-y-8 py-6" aria-labelledby="skills-heading">
+            <h2 id="skills-heading" class="text-3xl font-extrabold tracking-tight relative inline-block">
+                Technical Stack
+                <span class="block h-1 w-1/2 bg-brand-purple rounded mt-1"></span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- HTML5 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center space-y-3">
+                    <div class="p-4 rounded-xl bg-orange-500/10 text-orange-500">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.625 11.233-.001.232-2.625L4.475 4.5l.696 7.875h8.344l-.29 3.262-2.825.763-2.826-.762-.18-2.025H5.162l.36 4.088 5.878 1.587 5.878-1.587.822-9.312H8.531z"/></svg>
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Semantic HTML5</h3>
+                    <p class="text-sm text-slate-400">Strict landmark boundaries, high indexing scores, and clean keyboard tab layouts.</p>
+                </div>
+
+                <!-- CSS3 & Tailwind -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center space-y-3">
+                    <div class="p-4 rounded-xl bg-blue-500/10 text-blue-500">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.625 11.233-.001.232-2.625L4.475 4.5l.696 7.875h8.344l-.29 3.262-2.825.763-2.826-.762-.18-2.025H5.162l.36 4.088 5.878 1.587 5.878-1.587.822-9.312H8.531z"/></svg>
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Tailwind CSS3</h3>
+                    <p class="text-sm text-slate-400">Complex responsive flex and grid patterns with custom unified palette styles.</p>
+                </div>
+
+                <!-- JavaScript -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center space-y-3">
+                    <div class="p-4 rounded-xl bg-yellow-500/10 text-yellow-500">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm22.034 18.268c-.153-.822-.641-1.354-1.745-1.765-.433-.162-.916-.312-1.354-.422-.456-.113-.913-.243-1.354-.403-.314-.117-.6-.282-.6-.681 0-.419.349-.661.85-.661.464 0 .85.18 1.155.514.218.243.324.516.324.956h2.246c0-.822-.24-1.547-.723-2.054-.537-.562-1.341-.839-2.315-.839-1.285 0-2.222.613-2.222 1.83 0 .736.43 1.309 1.144 1.571.493.183.999.316 1.517.436.564.128 1.154.24 1.621.396.402.137.64.383.64.846 0 .524-.483.824-1.127.824-.717 0-1.196-.285-1.488-.737-.183-.284-.236-.543-.257-.996h-2.316c.032.883.352 1.623.834 2.138.544.577 1.343.832 2.457.832 1.325 0 2.417-.602 2.417-1.928zM9.421 16.643c.125-.79.529-1.307 1.458-1.536.436-.109.9-.17 1.357-.225.432-.055.882-.093 1.302-.15.3-.042.573-.102.573-.393 0-.312-.33-.487-.8-.487-.433 0-.791.137-1.077.388-.204.183-.304.388-.304.717H9.508c.033-.923.327-1.554.832-1.944.526-.407 1.258-.584 2.19-.584.887 0 1.688.192 2.146.541.428.324.63.856.63 1.503v3.714c0 .354.086.669.255.856H13.23c-.11-.2-.178-.458-.21-.735a2.766 2.766 0 01-1.954.858c-1.354 0-2.12-.511-2.12-1.46z"/></svg>
+                    </div>
+                    <h3 class="font-bold text-white text-lg">JavaScript (ES6+)</h3>
+                    <p class="text-sm text-slate-400">Complete client routing logic, API orchestration, and real-time form validation algorithms.</p>
+                </div>
+
+                <!-- Python / SQL -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center space-y-3">
+                    <div class="p-4 rounded-xl bg-emerald-500/10 text-emerald-500">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M14.25.18c.9 0 1.66.73 1.66 1.65v2.7h-7.5c-.83 0-1.5.67-1.5 1.5v3h-3.3c-.92 0-1.66-.74-1.66-1.65V4.08C1.95 2.16 3.86.18 6.13.18h8.12zm-.3 10.5c.83 0 1.5-.67 1.5-1.5v-3h3.3c.92 0 1.66.74 1.66 1.65v3.3c0 1.92-1.91 3.9-4.18 3.9h-8.12c-.9 0-1.66-.73-1.66-1.65v-2.7h7.5z"/></svg>
+                    </div>
+                    <h3 class="font-bold text-white text-lg">Python & SQL</h3>
+                    <p class="text-sm text-slate-400">Engineered microservice architectures, API gateways, and secured database schemas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4: PROJECTS VIEW -->
+        <section id="page-projects" class="hidden animate-page space-y-8 py-6" aria-labelledby="projects-heading">
+            <div class="flex flex-col md:flex-row md:items-end justify-between">
+                <div>
+                    <h2 id="projects-heading" class="text-3xl font-extrabold tracking-tight relative inline-block">
+                        Featured Projects
+                        <span class="block h-1 w-1/2 bg-brand-pink rounded mt-1"></span>
+                    </h2>
+                    <p class="text-slate-400 mt-2">Highly robust interfaces showcasing state-of-the-art layout implementations.</p>
+                </div>
+
+                <!-- Dynamic Project Filter Badges -->
+                <div class="flex flex-wrap gap-2 mt-4 md:mt-0" role="group" aria-label="Project filter options">
+                    <button onclick="filterProjects('all')" id="filter-btn-all" class="px-4 py-1.5 rounded-lg bg-indigo-600 text-white font-medium text-sm transition focus:ring-2 focus:ring-brand-indigo">
+                        All
+                    </button>
+                    <button onclick="filterProjects('web')" id="filter-btn-web" class="px-4 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white font-medium text-sm transition focus:ring-2 focus:ring-brand-indigo">
+                        Web Apps
+                    </button>
+                    <button onclick="filterProjects('system')" id="filter-btn-system" class="px-4 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white font-medium text-sm transition focus:ring-2 focus:ring-brand-indigo">
+                        Systems
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="projects-container">
+                <!-- Project 1 -->
+                
+                <!-- Project 2 -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between hover:scale-[1.02] transition duration-300" data-category="system">
+                    <div>
+                        <div class="h-48 bg-gradient-to-br from-emerald-900 to-indigo-900 flex items-center justify-center p-6 text-center relative">
+                            <span class="text-white font-bold text-xl relative z-10">QR Attendance System</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <span class="inline-block px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 text-xs font-semibold">System App / SQL</span>
+                            <h3 class="text-xl font-bold text-white">QR Attendance System</h3>
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                Instant dynamic QR code generation tracking secure classroom attendances connected to localized SQLite models.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex gap-4">
+                        <a href="" class="text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg flex-1 text-center transition">Live Demo</a>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between hover:scale-[1.02] transition duration-300" data-category="system">
+                    <div>
+                        <div class="h-48 bg-gradient-to-br from-indigo-900 to-pink-900 flex items-center justify-center p-6 text-center relative">
+                            <span class="text-white font-bold text-xl relative z-10">Library Management</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <span class="inline-block px-2.5 py-1 rounded bg-pink-500/10 text-pink-400 text-xs font-semibold">Database Utility</span>
+                            <h3 class="text-xl font-bold text-white">Library Management System</h3>
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                Robust terminal backend handling tracking operations, overdue indicators, catalog updates, and student profiles.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex gap-4">
+                        <button onclick="openModal('project3')" class="text-xs font-bold text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 px-4 py-2 rounded-lg flex-1 text-center transition" aria-label="View details of Library Management System">Details</button>
+                        <a href="#" class="text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg flex-1 text-center transition">Live Demo</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- PAGE 5: CONTACT VIEW -->
+        <section id="page-contact" class="hidden animate-page space-y-8 py-6" aria-labelledby="contact-heading">
+            <h2 id="contact-heading" class="text-3xl font-extrabold tracking-tight relative inline-block">
+                Get In Touch
+                <span class="block h-1 w-1/2 bg-brand-indigo rounded mt-1"></span>
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Info block panel -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-white">Let's discuss something amazing!</h3>
+                    <p class="text-slate-300 leading-relaxed text-base">
+                        Have an internship option, an architecture proposal, or a responsive project layout to design? Feel free to submit the form directly. All queries are channeled straight to my personal inbox at.
+                    </p>
+
+                                
+
+                   
+
+            <!-- Live-Submit Integrated Formspot / Formspree Endpoint Form -->
+            <div class="glass-card p-8 rounded-2xl">
+                <form id="contact-form" action="https://formspree.io/f/mdarpryk" method="POST" onsubmit="handleFormSubmit(event)" class="space-y-6" novalidate>
+                    
+                    <!-- Form dynamic alert container -->
+
+                <!-- Live-Submit Integrated Formspot / Formspree Endpoint Form -->
+                <div class="glass-card p-8 rounded-2xl">
+                    <form id="contact-form" action="https://formspree.io/f/xoqkyzyp" method="POST" onsubmit="handleFormSubmit(event)" class="space-y-6" novalidate>
+                        <!-- Integrated hidden email redirect helper -->
+                        <input type="hidden" name="_to" value="shabanawisdom15@gmail.com">
+                        
+                        <!-- Form dynamic alert container -->
+                        <div id="form-feedback" class="hidden p-4 rounded-lg text-sm font-semibold" role="alert"></div>
+
+                        <div class="space-y-1">
+                            <label for="contact-name" class="block text-sm font-medium text-slate-300">Your Full Name <span class="text-red-500" aria-hidden="true">*</span></label>
+                            <input type="text" id="contact-name" name="name" required class="w-full bg-slate-800/80 border border-slate-700 rounded-lg px-4 py-3 text-slate-100 placeholder-slate-500 focus:border-brand-purple focus:ring-2 focus:ring-brand-purple transition outline-none" placeholder="Azim Khan">
+                            <p id="name-error" class="hidden text-red-500 text-xs mt-1" role="status"></p>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label for="contact-email" class="block text-sm font-medium text-slate-300">Your Email Address <span class="text-red-500" aria-hidden="true">*</span></label>
+                            <input type="email" id="contact-email" name="email" required class="w-full bg-slate-800/80 border border-slate-700 rounded-lg px-4 py-3 text-slate-100 placeholder-slate-500 focus:border-brand-purple focus:ring-2 focus:ring-brand-purple transition outline-none" placeholder="azim.khan@example.com">
+                            <p id="email-error" class="hidden text-red-500 text-xs mt-1" role="status"></p>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label for="contact-message" class="block text-sm font-medium text-slate-300">Your Message <span class="text-red-500" aria-hidden="true">*</span></label>
+                            <textarea id="contact-message" name="message" rows="4" required class="w-full bg-slate-800/80 border border-slate-700 rounded-lg px-4 py-3 text-slate-100 placeholder-slate-500 focus:border-brand-purple focus:ring-2 focus:ring-brand-purple transition outline-none" placeholder="Let's build something beautiful..."></textarea>
+                            <p id="message-error" class="hidden text-red-500 text-xs mt-1" role="status"></p>
+                        </div>
+
+                        <button type="submit" class="w-full bg-gradient-to-r from-brand-indigo to-brand-purple hover:from-brand-purple hover:to-brand-pink text-white font-bold py-3 px-6 rounded-lg transition-all focus:ring-4 focus:ring-brand-purple flex items-center justify-center gap-2">
+                            <span>Submit Message</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="border-t border-slate-800 bg-slate-950 mt-24 py-12" role="contentinfo">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <p class="text-sm text-slate-400 text-center md:text-left">
+                &copy; 2026 Azim Khan. All rights reserved. Built with <3.
+            </p>
+       
+
+    <!-- Accessible Modal System (A11y Compliant Dialog) -->
+    <div id="project-modal" class="hidden fixed inset-0 z-50 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity bg-slate-950/80 backdrop-blur-sm" aria-hidden="true" onclick="closeModal()"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+            <div class="inline-block align-bottom glass-card rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full p-6 space-y-6">
+                <div class="flex items-center justify-between">
+                    <h3 id="modal-title" class="text-2xl font-bold text-white">Project Detail Metrics</h3>
+                    <button onclick="closeModal()" class="text-slate-400 hover:text-white transition p-1 rounded-lg hover:bg-slate-800 focus:ring-2 focus:ring-brand-purple" aria-label="Close details dialog">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                <div id="modal-content" class="text-slate-300 space-y-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Logic Area -->
+    <script>
+        // SPA 5-Page Navigation Controller Handler
+        const validPages = ['home', 'about', 'skills', 'projects', 'contact'];
+        
+        function navigateTo(targetPage) {
+            if (!validPages.includes(targetPage)) targetPage = 'home';
+            
+            // Hide all pages, show the chosen one
+            validPages.forEach(p => {
+                const element = document.getElementById(`page-${p}`);
+                if (element) {
+                    element.classList.add('hidden');
+                }
+                const navLink = document.getElementById(`nav-${p}`);
+                if (navLink) {
+                    navLink.classList.remove('nav-active');
+                }
+            });
+
+            // Display active target
+            const activePageElement = document.getElementById(`page-${targetPage}`);
+            if (activePageElement) {
+                activePageElement.classList.remove('hidden');
+                // Scroll page top slightly smoothly
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            
+            // Update Navigation Menu Visual Indicators
+            const activeNavLink = document.getElementById(`nav-${targetPage}`);
+            if (activeNavLink) {
+                activeNavLink.classList.add('nav-active');
+            }
+
+            // Collapse mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                document.getElementById('mobile-menu-btn').click();
+            }
+
+            // Sync URL hash state representation
+            if (history.pushState) {
+                history.pushState(null, null, `#${targetPage}`);
+            } else {
+                location.hash = `#${targetPage}`;
+            }
+        }
+
+        // Initialize Router on Startup or Window reload
+        window.addEventListener('load', () => {
+            const currentHash = location.hash.replace('#', '');
+            if (validPages.includes(currentHash)) {
+                navigateTo(currentHash);
+            } else {
+                navigateTo('home');
+            }
+
+            // Sync theme configuration defaults
+            const body = document.getElementById('body-root');
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme === 'light') {
+                body.classList.remove('dark');
+                body.classList.add('light');
+                document.getElementById('theme-sun').classList.remove('hidden');
+                document.getElementById('theme-moon').classList.add('hidden');
+            } else {
+                body.classList.add('dark');
+                body.classList.remove('light');
+            }
+        });
+
+        // Theme Toggle
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            const body = document.getElementById('body-root');
+            const sunIcon = document.getElementById('theme-sun');
+            const moonIcon = document.getElementById('theme-moon');
+
+            if (body.classList.contains('dark')) {
+                body.classList.remove('dark');
+                body.classList.add('light');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+                localStorage.setItem('theme', 'light');
+                showToast("Switched to Light Theme mode.");
+            } else {
+                body.classList.add('dark');
+                body.classList.remove('light');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+                localStorage.setItem('theme', 'dark');
+                showToast("Switched to Dark Theme mode.");
+            }
+        });
+
+        // Mobile Menu Button Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconPath = document.getElementById('menu-icon-path');
+
+        mobileBtn.addEventListener('click', () => {
+            const expanded = mobileBtn.getAttribute('aria-expanded') === 'true' || false;
+            mobileBtn.setAttribute('aria-expanded', !expanded);
+            mobileMenu.classList.toggle('hidden');
+
+            if (!expanded) {
+                menuIconPath.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            } else {
+                menuIconPath.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            }
+        });
+
+        // Accessibility Assistant functions
+        const a11yBtn = document.getElementById('accessibility-toggle-btn');
+        const a11yPanel = document.getElementById('accessibility-panel');
+        a11yBtn.addEventListener('click', () => {
+            const expanded = a11yBtn.getAttribute('aria-expanded') === 'true' || false;
+            a11yBtn.setAttribute('aria-expanded', !expanded);
+            a11yPanel.classList.toggle('hidden');
+        });
+
+        let fontMultiplier = 1.0;
+        function adjustFontSize(direction) {
+            const root = document.documentElement;
+            if (direction === 'increase' && fontMultiplier < 1.3) {
+                fontMultiplier += 0.1;
+            } else if (direction === 'decrease' && fontMultiplier > 0.8) {
+                fontMultiplier -= 0.1;
+            }
+            root.style.fontSize = `${fontMultiplier * 100}%`;
+            showToast(`Base Text scale adjusted to ${Math.round(fontMultiplier * 100)}%`);
+        }
+
+        function toggleHighContrast() {
+            const body = document.getElementById('body-root');
+            body.classList.toggle('high-contrast');
+            const state = body.classList.contains('high-contrast') ? "ON" : "OFF";
+            showToast(`High Contrast filter mode: ${state}`);
+        }
+
+        function showKeyboardShortcuts() {
+            showToast("Shortcuts list rendered to console!");
+            console.log(`Keyboard Navigation Hotkeys:\n\n- Press 'T' to toggle light/dark theme modes.\n- Press 'A' to reveal accessibility controls.\n- Press '1' to redirect to Home View.\n- Press '2' to redirect to About View.\n- Press '3' to redirect to Skills View.\n- Press '4' to redirect to Projects View.\n- Press '5' to redirect to Contact View.`);
+        }
+
+        // Project Filters
+        function filterProjects(category) {
+            const container = document.getElementById('projects-container');
+            const articles = container.getElementsByTagName('article');
+            const buttons = ['all', 'web', 'system'];
+            
+            buttons.forEach(btn => {
+                const element = document.getElementById(`filter-btn-${btn}`);
+                if (btn === category) {
+                    element.classList.remove('bg-slate-800', 'text-slate-300');
+                    element.classList.add('bg-indigo-600', 'text-white');
+                } else {
+                    element.classList.remove('bg-indigo-600', 'text-white');
+                    element.classList.add('bg-slate-800', 'text-slate-300');
+                }
+            });
+
+            for (let item of articles) {
+                const cat = item.getAttribute('data-category');
+                if (category === 'all' || cat === category) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            }
+        }
+
+        // Autofill helper
+        function autofillMockContact() {
+            document.getElementById('contact-name').value = "Jane Doe";
+            document.getElementById('contact-email').value = "jane.doe@example.com";
+            document.getElementById('contact-message').value = "Hello Azim! I found your 5-page SPA portfolio. I would love to connect with you regarding development work.";
+            showToast("Mock field contents populated!");
+        }
+
+        // Mock Resume download
+        function downloadResume() {
+            showToast("Packaging PDF resume layout metadata...");
+            setTimeout(() => {
+                showToast("Resume download initialized successfully!");
+            }, 800);
+        }
+
+        // Form Validation & Secure Post Integration
+        function handleFormSubmit(event) {
+            // Read fields
+            const nameIn = document.getElementById('contact-name');
+            const emailIn = document.getElementById('contact-email');
+            const messageIn = document.getElementById('contact-message');
+
+            const nameErr = document.getElementById('name-error');
+            const emailErr = document.getElementById('email-error');
+            const messageErr = document.getElementById('message-error');
+            const feedback = document.getElementById('form-feedback');
+
+            let isValid = true;
+
+            // Name validation
+            if (!nameIn.value.trim()) {
+                nameErr.innerText = "Please specify your full name.";
+                nameErr.classList.remove('hidden');
+                nameIn.classList.add('border-red-500');
+                isValid = false;
+            } else {
+                nameErr.classList.add('hidden');
+                nameIn.classList.remove('border-red-500');
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailIn.value.trim())) {
+                emailErr.innerText = "Please enter a valid personal email format.";
+                emailErr.classList.remove('hidden');
+                emailIn.classList.add('border-red-500');
+                isValid = false;
+            } else {
+                emailErr.classList.add('hidden');
+                emailIn.classList.remove('border-red-500');
+            }
+
+            // Message validation
+            if (!messageIn.value.trim() || messageIn.value.length < 10) {
+                messageErr.innerText = "Your message content must exceed 10 characters.";
+                messageErr.classList.remove('hidden');
+                messageIn.classList.add('border-red-500');
+                isValid = false;
+            } else {
+                messageErr.classList.add('hidden');
+                messageIn.classList.remove('border-red-500');
+            }
+
+            // Cancel action if client-side validation detects faults
+            if (!isValid) {
+                event.preventDefault();
+                feedback.innerText = "Please solve the highlighted issues before sending.";
+                feedback.className = "p-4 rounded-lg text-sm font-semibold bg-red-500/20 text-red-400 mb-6";
+                feedback.classList.remove('hidden');
+                showToast("Validation check failed!");
+            } else {
+                // If valid, allow standard form action submission to process towards shabanawisdom15@gmail.com via Formspree.
+                // We add visual confirmation.
+                showToast("Transmitting inquiry to shabanawisdom15@gmail.com...");
+            }
+        }
+
+        // Project Modal content dictionary
+        const projectData = {
+            project1: {
+                title: "Bhopal City Vibes",
+                tech: "HTML5, CSS3, Tailwind CSS, JavaScript",
+                desc: "An elaborate web portal promoting Bhopal’s vibrant food cultures, gorgeous lakes, and historic destinations. Built focusing strongly on visual elegance, fluid layout transitions, and high optimization."
+            },
+            project2: {
+                title: "QR Attendance System",
+                tech: "JavaScript, Python, SQLite database structure",
+                desc: "A classroom-focused academic platform. Students scan dynamically updated QR codes from displays, generating secure local attendance markers logged immediately inside SQL database tables."
+            },
+            project3: {
+                title: "Library Management System",
+                tech: "Python, SQL, Interactive CLI Dashboard",
+                desc: "Organizes school media inventory, allowing simple sorting parameters, user profiles, lending status tracking, and direct automatic reminders for overdue loans."
+            }
+        };
+
+        let lastActiveElement = null;
+
+        function openModal(projectId) {
+            lastActiveElement = document.activeElement;
+            const modal = document.getElementById('project-modal');
+            const title = document.getElementById('modal-title');
+            const content = document.getElementById('modal-content');
+            
+            const data = projectData[projectId];
+            if (data) {
+                title.innerText = data.title;
+                content.innerHTML = `
+                    <p><strong class="text-white">Technologies:</strong> <span class="text-indigo-400">${data.tech}</span></p>
+                    <p class="mt-4 leading-relaxed">${data.desc}</p>
+                `;
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                const closeBtn = modal.querySelector('button');
+                if (closeBtn) closeBtn.focus();
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+            if (lastActiveElement) lastActiveElement.focus();
+        }
+
+        // Custom Toast Utility
+        function showToast(message) {
+            let container = document.getElementById('toast-container');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'toast-container';
+                container.className = 'fixed top-6 right-6 z-50 flex flex-col gap-2 max-w-sm';
+                document.body.appendChild(container);
+            }
+
+            const toast = document.createElement('div');
+            toast.className = 'bg-slate-800 border border-slate-700 text-slate-100 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 transition-all transform translate-y-2 opacity-0 text-sm font-semibold';
+            toast.setAttribute('role', 'alert');
+            toast.innerHTML = `
+                <svg class="w-5 h-5 text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <span>${message}</span>
+            `;
+
+            container.appendChild(toast);
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            });
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-2', 'opacity-0');
+                setTimeout(() => { toast.remove(); }, 300);
+            }, 3000);
+        }
+
+        // Global Keydown Hotkeys matching help dashboard lists
+        document.addEventListener('keydown', (e) => {
+            const activeTag = document.activeElement.tagName;
+            if (activeTag === 'INPUT' || activeTag === 'TEXTAREA') return;
+
+            switch(e.key.toLowerCase()) {
+                case 't':
+                    document.getElementById('theme-toggle').click();
+                    break;
+                case 'a':
+                    document.getElementById('accessibility-toggle-btn').click();
+                    break;
+                case '1':
+                    navigateTo('home');
+                    break;
+                case '2':
+                    navigateTo('about');
+                    break;
+                case '3':
+                    navigateTo('skills');
+                    break;
+                case '4':
+                    navigateTo('projects');
+                    break;
+                case '5':
+                    navigateTo('contact');
+                    break;
+            }
+        });
+    </script>
+</body>
+</html>
